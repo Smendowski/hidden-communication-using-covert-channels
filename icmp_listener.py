@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import socket
 import struct
+import base64
 
 ICMP_PACKET = {
     "IP_HEADER_SIZE": 20,
@@ -22,7 +23,18 @@ def listen_on_icmp_socket(icmp_socket: socket.socket):
         destination_ip = get_dotted_decimal_ip_address(unicode_ip_address=ip_header[-4:])
 
         payload = data[ICMP_PACKET["IP_HEADER_SIZE"] + ICMP_PACKET["ICMP_HEADER_SIZE"]:]
-        print(payload)
+
+        decode_payload(payload=payload)
+
+
+def decode_payload(payload: bytes):
+    splitted_payload = str(payload, "utf8").split(":")
+
+    file_chunk = str(base64.b64decode(splitted_payload[0]), "utf-8")
+    sequence_number = int(splitted_payload[1])
+    file_identifier = str(base64.b64decode(splitted_payload[2]), "utf-8")
+
+    print(file_chunk)
 
 
 def get_data_from_icmp_socket():
