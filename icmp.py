@@ -1,3 +1,4 @@
+#!/usr/bin/python
 from scapy.layers.inet import IP, ICMP
 from scapy.sendrecv import send
 from typing import List, Generator, Optional
@@ -7,12 +8,6 @@ import argparse
 import io
 import asyncio
 import random
-
-ICMP_PACKET = {
-    "IP_HEADER_SIZE": 20,
-    "ICMP_HEADER_SIZE": 8,
-    "MAX_ICMP_PAYLOAD_SIZE": 1472
-}
 
 
 def read_and_fragment_file(filename: str) -> Generator[bytes, None, None]:
