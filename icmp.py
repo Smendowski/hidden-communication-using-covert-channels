@@ -78,7 +78,8 @@ async def main():
 
     file_chunks = read_and_fragment_file(filename=args.filename)
     encoded_file_chunks = get_base64_encoded_file_chunks(chunks=file_chunks)
-    encoded_file_identifier = get_base64_encoded_file_identifier(filename=args.filename, source=args.source)
+    encoded_file_identifier = get_base64_encoded_file_identifier(filename=os.path.basename(args.filename),
+                                                                 source=args.source)
     icmp_payload = create_icmp_payload(chunks=encoded_file_chunks, chunks_id=encoded_file_identifier)
     await send_payload_via_icmp(payload=icmp_payload, source=args.source, destination=args.destination,
                                 interval=args.interval)
