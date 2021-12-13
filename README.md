@@ -3,6 +3,8 @@
 ## Authors
 Mateusz Smendowski, Piotr Śladowski, Marcin Świstak
 
+## Original Documentation
+https://demo.hedgedoc.org/hBGWzQS9SP64Gk19aPXhTA?both
 
 ## 1. Introduction
 
